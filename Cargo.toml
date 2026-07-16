@@ -1,0 +1,9 @@
+[package]
+name = "vrc_adblock"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+is_elevated = "0.1"
+reqwest = { version = "0.13.4", features = ["blocking"] }
+runas = "1"
