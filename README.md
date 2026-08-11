@@ -10,11 +10,12 @@ ads that are baked into the world aren't removed.
 
 ### script
 
-1. download the script from the [releases page](https://github.com/artifishvr/vrc_adblock/releases)
-    1. if your hosts file has important stuff in it, please make a backup just in case.
-2. run the script as admin (it will prompt you if needed)
+1. download the proper executable for your OS from the [releases page](https://github.com/artifishvr/vrc_adblock/releases)
+    1. please make a backup of your hosts file (`C:\Windows\System32\drivers\etc\hosts` or `/etc/hosts`) just in case.
+2. run the script as admin/root (it will prompt you if needed)
 3. your hosts file is updated, enjoy
-4. if the txt on github is updated, you can run the script again to update the hosts file
+
+if the txt on github is updated, you can just run the script again to update the hosts file
 
 ### manual
 
