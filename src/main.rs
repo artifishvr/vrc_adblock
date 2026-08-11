@@ -103,7 +103,7 @@ fn update_section(path: &Path, new_content: &str) -> io::Result<()> {
 
     if !original.trim().is_empty() && (output.len() as f64) < (original.len() as f64) * 0.5 {
         return Err(io::Error::other(
-            "refusing to write: output is suspiciously ඞ smaller than the original ",
+            "refusing to write: output is suspiciously smaller than the original ",
         ));
     }
 
