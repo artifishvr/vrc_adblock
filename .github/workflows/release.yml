@@ -14,7 +14,7 @@ jobs:
     strategy:
       matrix:
         include:
-          - os: ubuntu-20.04
+          - os: ubuntu-22.04
             target: x86_64-unknown-linux-gnu
             artifact_name: vrc_adblock_linux_x86_64
             asset_name: vrc_adblock_linux_x86_64
