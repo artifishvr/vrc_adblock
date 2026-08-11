@@ -18,6 +18,20 @@ ads that are baked into the world aren't removed.
 
 ### manual
 
+#### windows
+
 1. open notepad as admin
-2. open `C:\Windows\System32\drivers\etc\hosts` and add the contents of [blocked_hosts.txt](https://github.com/artifishvr/vrc_adblock/blob/main/blocked_hosts.txt) at the bottom (on a new line)
+2. open `C:\Windows\System32\drivers\etc\hosts` and add the contents of [blocked_hosts.txt][hosts-link] at the bottom (on a new line)
 3. done! enjoy.
+
+#### linux
+
+1. execute your text editor as the root user
+2. carefully instruct your text editor to begin the immediate modification of the path `/etc/hosts`
+3. instruct the cursor currently visible on the afformentioned editor to navigate to the very end of the path's plain text contents
+4. on your browser, navigate to the extremely important [blocked_hosts.txt][hosts-link] file
+5. instruct the browser cursor (not to be confused with the cursor of the textual editor) to select the contents of the file
+6. i'm getting tired of writing this just copy and paste it to the end of the file
+7. ok
+
+[hosts-link]: https://github.com/artifishvr/vrc_adblock/blob/main/blocked_hosts.txt
