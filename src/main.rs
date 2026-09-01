@@ -2,12 +2,24 @@ use std::fs;
 use std::io::{self, Write};
 use std::path::Path;
 
-fn main() {
-    if !cfg!(windows) {
-        panic!("Only windows is supported at the moment.");
+fn is_admin() -> bool {
+    #[cfg(target_os = "linux")]
+    {
+        unsafe { libc::getuid() == 0 }
     }
 
-    if !is_elevated::is_elevated() {
+    #[cfg(target_os = "windows")]
+    {
+        is_elevated::is_elevated()
+    }
+}
+
+fn main() {
+    if !cfg!(any(target_os = "windows", target_os = "linux")) {
+        panic!("Only windows and linux are supported at the moment.");
+    }
+
+    if !is_admin() {
         let exe = std::env::current_exe().unwrap();
         runas::Command::new(exe)
             .gui(true) // shows UAC prompt instead of failing silently
@@ -20,8 +32,11 @@ fn main() {
 
     let body = reqwest::blocking::get("https://raw.githubusercontent.com/artifishvr/vrc_adblock/refs/heads/main/blocked_hosts.txt").expect("Couldn't get new hosts file, github down again?")
     .text().expect("Couldn't parse text");
-
-    let path: &Path = Path::new("C:\\Windows\\System32\\drivers\\etc\\hosts");
+	let path: &Path = if cfg!(target_os = "windows") {
+        Path::new("C:\\Windows\\System32\\drivers\\etc\\hosts")
+    } else {
+        Path::new("/etc/hosts")
+    };
 
     let section_result = update_section(path, &body);
 
@@ -30,7 +45,7 @@ fn main() {
         Err(err) => println!("Failed to update file {}", err),
     }
 
-    println!("\nPress any key to exit...");
+    println!("\nPress enter to exit...");
     io::stdout().flush().expect("What");
     let mut buf = String::new();
     io::stdin()
@@ -81,16 +96,14 @@ fn update_section(path: &Path, new_content: &str) -> io::Result<()> {
 
     // safety checks
     if output.trim().is_empty() {
-        return Err(io::Error::new(
-            io::ErrorKind::Other,
+        return Err(io::Error::other(
             "refusing to write: output is empty",
         ));
     }
 
     if !original.trim().is_empty() && (output.len() as f64) < (original.len() as f64) * 0.5 {
-        return Err(io::Error::new(
-            io::ErrorKind::Other,
-            "refusing to write: output is suspiciously ඞ smaller than the original ",
+        return Err(io::Error::other(
+            "refusing to write: output is suspiciously smaller than the original ",
         ));
     }
 
