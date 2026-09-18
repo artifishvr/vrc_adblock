@@ -1,2 +1,3 @@
 0.0.0.0 data.vr-m.net # popcorn palace posters
-0.0.0.0 telemetry.vrclinking.com # location tracking (ew)
+0.0.0.0 data.vrclinking.com # general vrclinking posters
+0.0.0.0 telemetry.vrclinking.com # vrclinking location tracking
