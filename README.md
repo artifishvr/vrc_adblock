@@ -1,4 +1,4 @@
-# ad blocker for popcorn palace posters
+# ad blocker for popcorn palace posters & (some) telemetry
 
 tired of toggling off the posters every time?
 
