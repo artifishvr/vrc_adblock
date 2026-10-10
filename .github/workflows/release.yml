@@ -33,14 +33,16 @@ jobs:
         targets: ${{ matrix.target }}
 
     - name: Build
+      working-directory: ./apps/rust
       run: cargo build --release --target ${{ matrix.target }}
 
     - name: Rename Release Asset
       shell: bash
+      working-directory: ./apps/rust
       run: |
         mv ./target/${{ matrix.target }}/release/${{ matrix.artifact_name }} ./target/${{ matrix.target }}/release/${{ matrix.asset_name }}
 
     - name: Upload Release Asset
       uses: softprops/action-gh-release@v2
       with:
-        files: ./target/${{ matrix.target }}/release/${{ matrix.asset_name }}
+        files: ./apps/rust/target/${{ matrix.target }}/release/${{ matrix.asset_name }}
