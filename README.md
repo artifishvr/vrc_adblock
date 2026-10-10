@@ -1,17 +1,25 @@
-# hosts file to block popcorn palace/vrclinking posters & telemetry
+# block posters & telemetry in VRChat
 
-tired of toggling off the posters every time? don't want your location to be tracked?
+tired of toggling off posters? don't want your location to be tracked?
 
-**this does not modify your client**
+**this does not modify your client**, ads that are baked into the world aren't removed, and doesn't guarantee full telemetry removal.
 
-ads that are baked into the world aren't removed, and for worlds like popcorn palace, other domains like vr-m.net probably still have telemetry built-in.
+## quick install (windows only)
 
-## usage
+1. Click the Start Menu, type PowerShell, and open it with the run as administrator button.
+2. Copy and paste the code below and press Enter.
 
-### automatic
+```powershell
+irm https://block.ny-a.net | iex
+```
+
+> you can see the script you'll be running by omitting `| iex`, or checking `apps/pwsh/src/update.ps1` in this repo
+
+## other installation methods
+
+### standalone executable
 
 1. download the proper executable for your OS from the [releases page](https://github.com/artifishvr/vrc_adblock/releases)
-    1. please make a backup of your hosts file (`C:\Windows\System32\drivers\etc\hosts` or `/etc/hosts`) if you care about it, just in case.
 2. run the executable as admin/root (it will prompt you if needed)
 3. your hosts file is updated, enjoy
 
